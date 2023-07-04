@@ -1,0 +1,121 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.11.1
+  creationTimestamp: null
+  name: bridgeconfigurations.bridgeoperator.k8s.cni.npwg.io
+spec:
+  group: bridgeoperator.k8s.cni.npwg.io
+  names:
+    kind: BridgeConfiguration
+    listKind: BridgeConfigurationList
+    plural: bridgeconfigurations
+    singular: bridgeconfiguration
+  scope: Cluster
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: BridgeConfiguration is the schema for bridgeconfiguration API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: BridgeConfiguration spec defines the desired state of a bridge
+            properties:
+              egressInterfaces:
+                items:
+                  description: EgressInterfaces represents egress interfaces of bridge
+                  properties:
+                    name:
+                      description: Name represents interface to be added into the
+                        bridge
+                      type: string
+                  required:
+                  - name
+                  type: object
+                type: array
+              egressVlanInterfaces:
+                items:
+                  description: EgressVlanInterfaces represents egress interfaces of
+                    bridge with specific vlan, which will be created by bridge-operator'
+                  properties:
+                    id:
+                      description: Id specifies vlan id of given protocol
+                      type: integer
+                    name:
+                      description: name represents parent interfaces of vlan interface
+                      type: string
+                    protocol:
+                      description: 'Protocol specifies vlan protocol (802.1q or 802.1ad).
+                        default: 802.1q.'
+                      type: string
+                  required:
+                  - id
+                  - name
+                  - protocol
+                  type: object
+                type: array
+              nodeSelector:
+                description: 'NodeSelector is a selector which must be true for the
+                  bridge to fit on a node. Selector which must match a node''''s labels
+                  for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                properties:
+                  matchExpressions:
+                    description: matchExpressions is a list of label selector requirements.
+                      The requirements are ANDed.
+                    items:
+                      description: A label selector requirement is a selector that
+                        contains values, a key, and an operator that relates the key
+                        and values.
+                      properties:
+                        key:
+                          description: key is the label key that the selector applies
+                            to.
+                          type: string
+                        operator:
+                          description: operator represents a key's relationship to
+                            a set of values. Valid operators are In, NotIn, Exists
+                            and DoesNotExist.
+                          type: string
+                        values:
+                          description: values is an array of string values. If the
+                            operator is In or NotIn, the values array must be non-empty.
+                            If the operator is Exists or DoesNotExist, the values
+                            array must be empty. This array is replaced during a strategic
+                            merge patch.
+                          items:
+                            type: string
+                          type: array
+                      required:
+                      - key
+                      - operator
+                      type: object
+                    type: array
+                  matchLabels:
+                    additionalProperties:
+                      type: string
+                    description: matchLabels is a map of {key,value} pairs. A single
+                      {key,value} in the matchLabels map is equivalent to an element
+                      of matchExpressions, whose key field is "key", the operator
+                      is "In", and the values array contains only "value". The requirements
+                      are ANDed.
+                    type: object
+                type: object
+                x-kubernetes-map-type: atomic
+            type: object
+        type: object
+    served: true
+    storage: true

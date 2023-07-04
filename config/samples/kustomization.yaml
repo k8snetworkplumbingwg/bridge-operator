@@ -1,0 +1,5 @@
+## Append samples you want in your CSV to this file as resources ##
+resources:
+- bridgeoperator_v1alpha1_bridgeconfiguration.yaml
+- bridgeoperator_v1alpha1_bridgeinformation.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples

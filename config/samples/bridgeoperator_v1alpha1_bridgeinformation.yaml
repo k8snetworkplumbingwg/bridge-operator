@@ -1,0 +1,12 @@
+apiVersion: bridgeoperator.k8s.cni.npwg.io/v1alpha1
+kind: BridgeInformation
+metadata:
+  labels:
+    app.kubernetes.io/name: bridgeinformation
+    app.kubernetes.io/instance: bridgeinformation-sample
+    app.kubernetes.io/part-of: bridge-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: bridge-operator
+  name: bridgeinformation-sample
+spec:
+  # TODO(user): Add fields here

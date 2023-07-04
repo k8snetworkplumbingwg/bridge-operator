@@ -1,0 +1,77 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  verbs:
+  - get
+- apiGroups:
+  - apps
+  resources:
+  - daemonsets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - bridgeoperator.k8s.cni.npwg.io
+  resources:
+  - bridgeconfigurations
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - bridgeoperator.k8s.cni.npwg.io
+  resources:
+  - bridgeconfigurations/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - bridgeoperator.k8s.cni.npwg.io
+  resources:
+  - bridgeconfigurations/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - bridgeoperator.k8s.cni.npwg.io
+  resources:
+  - bridgeinformation
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - bridgeoperator.k8s.cni.npwg.io
+  resources:
+  - bridgeinformation/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - bridgeoperator.k8s.cni.npwg.io
+  resources:
+  - bridgeinformation/status
+  verbs:
+  - get
+  - patch
+  - update
