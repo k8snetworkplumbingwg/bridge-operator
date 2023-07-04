@@ -10,7 +10,7 @@ This bridge-operator is expected to use with 'bridge' CNI plugin to connect the 
 TL;DR
 ```
 git clone https://github.com/k8snetworkplumbingwg/bridge-operator
-make deploy IMG=<image>
+make deploy IMG=ghcr.io/k8snetworkplumbingwg/bridge-operator:latest
 ```
 
 ## Requirements
